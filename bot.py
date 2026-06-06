@@ -1,9 +1,9 @@
 import time
 
-from abot.aiogram_component import AiogramComponent
+from botomorph.aiogram_component import AiogramComponent
 t1 = time.time()
-from abot import Filter, Handler, start_bots, ClsHandler, set_handlers_registrator, BaseMsg, Keyboard
-from abot.vkbottle_component import VKBottleComponent
+from botomorph import Filter, Handler, start_bots, ClsHandler, set_handlers_registrator, BaseMsg, Keyboard
+from botomorph.vkbottle_component import VKBottleComponent
 t2 = time.time()
 print(t2-t1)
 

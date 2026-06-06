@@ -1,6 +1,5 @@
 """
 """
-#код ленивой инициализации модулей повзаимствован с https://github.com/pallets/werkzeug/tree/71eab19be2c83fb476de51275e2f9bdf69d5cc10
 import sys
 from types import ModuleType
 
@@ -8,12 +7,12 @@ __version__ = "0.0.0"
 
 # import mapping to objects in other modules
 all_by_module = {
-    "abot.core":["start_bots", "BaseComponent", "ClsHandler", "ClsComponenter", "CoreMeta", "set_cmpnts_registrator", "set_handlers_registrator"],
-    "abot.handle": ["Handler"],
-    "abot.message": ["BaseMsg", "Sender", "Keyboard", "Button", "MsgFactory"],
-    "abot.filter":["Filter", "ABCFilter"],
-    "abot.aiogram_component": ["AiogramComponent", "AiogramFilter", "AiogramMsger"],
-    "abot.vkbottle_component": ["VKBottleComponent", "VKFilter", "VKMsger"]
+    "botomorph.core":["start_bots", "BaseComponent", "ClsHandler", "ClsComponenter", "CoreMeta", "set_cmpnts_registrator", "set_handlers_registrator"],
+    "botomorph.handle": ["Handler"],
+    "botomorph.message": ["BaseMsg", "Sender", "Keyboard", "Button", "MsgFactory"],
+    "botomorph.filter":["Filter", "ABCFilter"],
+    "botomorph.aiogram_component": ["AiogramComponent", "AiogramFilter", "AiogramMsger"],
+    "botomorph.vkbottle_component": ["VKBottleComponent", "VKFilter", "VKMsger"]
 }
 
 # modules that should be imported when accessed as attributes of werkzeug
@@ -35,7 +34,7 @@ class module(ModuleType):
                 setattr(self, extra_name, getattr(module, extra_name))
             return getattr(module, name)
         elif name in attribute_modules:
-            __import__("abot." + name)
+            __import__("botomorph." + name)
         return 
 
     def __dir__(self):
@@ -55,20 +54,20 @@ class module(ModuleType):
         )
         return result
 
-from abot.message import BaseMsg, Sender, Keyboard, Button
-from abot.handle import Handler
-from abot.filter import Filter, BaseFilterImplementor
-from abot.core import start_bots, BaseComponent, ClsHandler, ClsComponenter, CoreMeta, set_cmpnts_registrator, set_handlers_registrator
+from botomorph.message import BaseMsg, Sender, Keyboard, Button
+from botomorph.handle import Handler
+from botomorph.filter import Filter, BaseFilterImplementor
+from botomorph.core import start_bots, BaseComponent, ClsHandler, ClsComponenter, CoreMeta, set_cmpnts_registrator, set_handlers_registrator
 
 # keep a reference to this module so that it's not garbage collected
-old_module = sys.modules["abot"]
+old_module = sys.modules["botomorph"]
 
 # setup the new module and patch it into the dict of loaded modules
-new_module = sys.modules["abot"] = module("abot")
+new_module = sys.modules["botomorph"] = module("botomorph")
 new_module.__dict__.update(
     {
         "__file__": __file__,
-        "__package__": "abot",
+        "__package__": "botomorph",
         "__path__": __path__,
         "__doc__": __doc__,
         "__version__": __version__,

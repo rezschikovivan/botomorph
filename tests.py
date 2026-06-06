@@ -2,10 +2,10 @@ import time
 
 t1 = time.time()
 
-from abot import Filter, Handler, BaseMsg, Sender, BaseComponent, Keyboard, start_bots
+from botomorph import Filter, Handler, BaseMsg, Sender, BaseComponent, Keyboard, start_bots
 #from abot.aiogram_component import AiogramComponent
-from abot.vkbottle_component import VKBottleComponent
-from abot.aiogram_component import AiogramComponent
+from botomorph.vkbottle_component import VKBottleComponent
+from botomorph.aiogram_component import AiogramComponent
 
 t2 = time.time()
 print(t2-t1)
